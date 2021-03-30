@@ -14,7 +14,10 @@ db.restaurants.find( { $or: [
   {name: /^(Wil)/} 
 ] },{restaurant_id: 1, name:1, borough: 1, cuisine:1} ).pretty()
 
-db.restaurants.find({name: /mon/},{name:1, borough:1, longitude:1, attitude:1, cuisine:1}).pretty()
+db.restaurants.find(
+  {name: RegExp('mon')},
+  {restaurant_id: 1,name: 1,borough: 1,cuisine: 1,'address.coord': 1,_id: 0}
+).pretty()
 
 db.restaurants.find({borough: {$in:['Staten Island', 'Bronx', 'Brooklyn', 'Queens']}},{restaurant_id: 1, name:1, borough: 1, cuisine:1}).pretty()
 ```
